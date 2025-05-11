@@ -39,6 +39,7 @@
       display: none;
       flex-direction: column;
       align-items: center;
+      position: relative;
     }
 
     .book-pages {
@@ -55,7 +56,30 @@
       align-items: center;
       text-align: center;
       padding: 20px;
-      transition: transform 0.5s ease;
+      transition: transform 1s ease;
+      transform-style: preserve-3d;
+    }
+
+    .book-page {
+      backface-visibility: hidden;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .book-page img, .book-page video {
+      max-width: 100%;
+      max-height: 250px;
+      border-radius: 10px;
+    }
+
+    .book-page p {
+      margin-top: 10px;
+      font-style: italic;
     }
 
     .nav-button, .close-button {
@@ -68,15 +92,16 @@
       cursor: pointer;
     }
 
-    .memory-content img, .memory-content video {
-      max-width: 100%;
-      max-height: 250px;
-      border-radius: 10px;
+    .book-page-back {
+      transform: rotateY(180deg);
     }
 
-    .memory-content p {
-      margin-top: 10px;
-      font-style: italic;
+    .flip {
+      transform: rotateY(180deg);
+    }
+
+    .flip-back {
+      transform: rotateY(0deg);
     }
   </style>
 </head>
@@ -89,7 +114,9 @@
 
   <div class="book" id="book">
     <button class="close-button" onclick="goBack()">&larr; Back</button>
-    <div class="book-pages" id="book-pages"></div>
+    <div class="book-pages" id="book-pages">
+      <!-- Pages will be inserted here dynamically -->
+    </div>
     <button class="nav-button" onclick="prevPage()">&#8592;</button>
     <button class="nav-button" onclick="nextPage()">&#8594;</button>
   </div>
@@ -135,39 +162,63 @@
       container.innerHTML = '';
 
       if (currentSection === 'letters') {
-        container.textContent = letters[currentPage] || 'End of letters 💌';
+        const letterDiv = document.createElement('div');
+        letterDiv.classList.add('book-page');
+        letterDiv.textContent = letters[currentPage] || 'End of letters 💌';
+        container.appendChild(letterDiv);
+        setTimeout(() => flipPage(), 50);
       } else if (currentSection === 'memories') {
         const mem = memories[currentPage];
         if (!mem) {
-          container.textContent = 'No more memories ✨';
+          const noMemoriesDiv = document.createElement('div');
+          noMemoriesDiv.classList.add('book-page');
+          noMemoriesDiv.textContent = 'No more memories ✨';
+          container.appendChild(noMemoriesDiv);
+          setTimeout(() => flipPage(), 50);
           return;
         }
 
         const memDiv = document.createElement('div');
-        memDiv.className = 'memory-content';
+        memDiv.classList.add('book-page');
+        const mediaDiv = document.createElement('div');
 
         if (mem.type === 'image') {
           const img = document.createElement('img');
           img.src = mem.src;
-          memDiv.appendChild(img);
+          mediaDiv.appendChild(img);
         } else if (mem.type === 'video') {
           const video = document.createElement('video');
           video.src = mem.src;
           video.controls = true;
-          memDiv.appendChild(video);
+          mediaDiv.appendChild(video);
         }
 
         const caption = document.createElement('p');
         caption.textContent = mem.caption;
-        memDiv.appendChild(caption);
-
+        mediaDiv.appendChild(caption);
+        memDiv.appendChild(mediaDiv);
         container.appendChild(memDiv);
+
+        setTimeout(() => flipPage(), 50);
+      }
+    }
+
+    function flipPage() {
+      const pages = document.querySelectorAll('.book-page');
+      if (pages.length > 1) {
+        pages[0].classList.add('flip');
+        pages[1].classList.add('flip-back');
       }
     }
 
     function nextPage() {
-      currentPage++;
-      renderPage();
+      if (currentSection === 'letters' && currentPage < letters.length - 1) {
+        currentPage++;
+        renderPage();
+      } else if (currentSection === 'memories' && currentPage < memories.length - 1) {
+        currentPage++;
+        renderPage();
+      }
     }
 
     function prevPage() {
