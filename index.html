@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Love Book</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #fff0f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .start-screen {
+      text-align: center;
+    }
+
+    .start-screen h1 {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+
+    .start-screen button {
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 1em;
+      background-color: #ffb6c1;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .book {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .book-pages {
+      width: 300px;
+      height: 400px;
+      border: 2px solid #ff69b4;
+      border-radius: 10px;
+      background-color: white;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+      transition: transform 0.5s ease;
+    }
+
+    .nav-button, .close-button {
+      margin: 10px;
+      padding: 8px 16px;
+      background-color: #ff69b4;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      cursor: pointer;
+    }
+
+    .memory-content img, .memory-content video {
+      max-width: 100%;
+      max-height: 250px;
+      border-radius: 10px;
+    }
+
+    .memory-content p {
+      margin-top: 10px;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <div class="start-screen" id="start-screen">
+    <h1>Welcome to Our Love Book 💖</h1>
+    <button onclick="openSection('letters')">See Letters</button>
+    <button onclick="openSection('memories')">See Memories</button>
+  </div>
+
+  <div class="book" id="book">
+    <button class="close-button" onclick="goBack()">&larr; Back</button>
+    <div class="book-pages" id="book-pages"></div>
+    <button class="nav-button" onclick="prevPage()">&#8592;</button>
+    <button class="nav-button" onclick="nextPage()">&#8594;</button>
+  </div>
+
+  <script>
+    const letters = [
+      "My love, from the moment we met, everything changed.",
+      "Every day with you is a page of joy and warmth.",
+      "I can’t wait to fill more pages of life with you. 💕"
+    ];
+
+    const memories = [
+      {
+        type: 'image',
+        src: 'https://via.placeholder.com/300x200',
+        caption: 'That picnic day you wore that cute hat 🧺'
+      },
+      {
+        type: 'video',
+        src: 'https://www.w3schools.com/html/mov_bbb.mp4',
+        caption: 'Our silly dance in the kitchen 🕺'
+      }
+    ];
+
+    let currentSection = '';
+    let currentPage = 0;
+
+    function openSection(section) {
+      currentSection = section;
+      currentPage = 0;
+      document.getElementById('start-screen').style.display = 'none';
+      document.getElementById('book').style.display = 'flex';
+      renderPage();
+    }
+
+    function goBack() {
+      document.getElementById('book').style.display = 'none';
+      document.getElementById('start-screen').style.display = 'block';
+    }
+
+    function renderPage() {
+      const container = document.getElementById('book-pages');
+      container.innerHTML = '';
+
+      if (currentSection === 'letters') {
+        container.textContent = letters[currentPage] || 'End of letters 💌';
+      } else if (currentSection === 'memories') {
+        const mem = memories[currentPage];
+        if (!mem) {
+          container.textContent = 'No more memories ✨';
+          return;
+        }
+
+        const memDiv = document.createElement('div');
+        memDiv.className = 'memory-content';
+
+        if (mem.type === 'image') {
+          const img = document.createElement('img');
+          img.src = mem.src;
+          memDiv.appendChild(img);
+        } else if (mem.type === 'video') {
+          const video = document.createElement('video');
+          video.src = mem.src;
+          video.controls = true;
+          memDiv.appendChild(video);
+        }
+
+        const caption = document.createElement('p');
+        caption.textContent = mem.caption;
+        memDiv.appendChild(caption);
+
+        container.appendChild(memDiv);
+      }
+    }
+
+    function nextPage() {
+      currentPage++;
+      renderPage();
+    }
+
+    function prevPage() {
+      if (currentPage > 0) {
+        currentPage--;
+        renderPage();
+      }
+    }
+  </script>
+</body>
+</html>
