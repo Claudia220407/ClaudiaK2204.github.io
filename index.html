@@ -1,109 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Our Love Book</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: #fff0f5;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      overflow: hidden;
-    }
+  <link rel="stylesheet" href="style.css">
 
-    .start-screen {
-      text-align: center;
-    }
-
-    .start-screen h1 {
-      font-size: 2em;
-      margin-bottom: 20px;
-    }
-
-    .start-screen button {
-      padding: 10px 20px;
-      margin: 10px;
-      font-size: 1em;
-      background-color: #ffb6c1;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-
-    .book {
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      position: relative;
-    }
-
-    .book-pages {
-      width: 300px;
-      height: 400px;
-      border: 2px solid #ff69b4;
-      border-radius: 10px;
-      background-color: white;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-      overflow: hidden;
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 20px;
-      transition: transform 1s ease;
-      transform-style: preserve-3d;
-    }
-
-    .book-page {
-      backface-visibility: hidden;
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-    }
-
-    .book-page img, .book-page video {
-      max-width: 100%;
-      max-height: 250px;
-      border-radius: 10px;
-    }
-
-    .book-page p {
-      margin-top: 10px;
-      font-style: italic;
-    }
-
-    .nav-button, .close-button {
-      margin: 10px;
-      padding: 8px 16px;
-      background-color: #ff69b4;
-      border: none;
-      border-radius: 8px;
-      color: white;
-      cursor: pointer;
-    }
-
-    .book-page-back {
-      transform: rotateY(180deg);
-    }
-
-    .flip {
-      transform: rotateY(180deg);
-    }
-
-    .flip-back {
-      transform: rotateY(0deg);
-    }
-  </style>
 </head>
 <body>
   <div class="start-screen" id="start-screen">
@@ -114,119 +16,11 @@
 
   <div class="book" id="book">
     <button class="close-button" onclick="goBack()">&larr; Back</button>
-    <div class="book-pages" id="book-pages">
-      <!-- Pages will be inserted here dynamically -->
-    </div>
+    <div class="book-pages" id="book-pages"></div>
     <button class="nav-button" onclick="prevPage()">&#8592;</button>
     <button class="nav-button" onclick="nextPage()">&#8594;</button>
   </div>
 
-  <script>
-    const letters = [
-      "My love, from the moment we met, everything changed.",
-      "Every day with you is a page of joy and warmth.",
-      "I can’t wait to fill more pages of life with you. 💕"
-    ];
-
-    const memories = [
-      {
-        type: 'image',
-        src: 'https://via.placeholder.com/300x200',
-        caption: 'That picnic day you wore that cute hat 🧺'
-      },
-      {
-        type: 'video',
-        src: 'https://www.w3schools.com/html/mov_bbb.mp4',
-        caption: 'Our silly dance in the kitchen 🕺'
-      }
-    ];
-
-    let currentSection = '';
-    let currentPage = 0;
-
-    function openSection(section) {
-      currentSection = section;
-      currentPage = 0;
-      document.getElementById('start-screen').style.display = 'none';
-      document.getElementById('book').style.display = 'flex';
-      renderPage();
-    }
-
-    function goBack() {
-      document.getElementById('book').style.display = 'none';
-      document.getElementById('start-screen').style.display = 'block';
-    }
-
-    function renderPage() {
-      const container = document.getElementById('book-pages');
-      container.innerHTML = '';
-
-      if (currentSection === 'letters') {
-        const letterDiv = document.createElement('div');
-        letterDiv.classList.add('book-page');
-        letterDiv.textContent = letters[currentPage] || 'End of letters 💌';
-        container.appendChild(letterDiv);
-        setTimeout(() => flipPage(), 50);
-      } else if (currentSection === 'memories') {
-        const mem = memories[currentPage];
-        if (!mem) {
-          const noMemoriesDiv = document.createElement('div');
-          noMemoriesDiv.classList.add('book-page');
-          noMemoriesDiv.textContent = 'No more memories ✨';
-          container.appendChild(noMemoriesDiv);
-          setTimeout(() => flipPage(), 50);
-          return;
-        }
-
-        const memDiv = document.createElement('div');
-        memDiv.classList.add('book-page');
-        const mediaDiv = document.createElement('div');
-
-        if (mem.type === 'image') {
-          const img = document.createElement('img');
-          img.src = mem.src;
-          mediaDiv.appendChild(img);
-        } else if (mem.type === 'video') {
-          const video = document.createElement('video');
-          video.src = mem.src;
-          video.controls = true;
-          mediaDiv.appendChild(video);
-        }
-
-        const caption = document.createElement('p');
-        caption.textContent = mem.caption;
-        mediaDiv.appendChild(caption);
-        memDiv.appendChild(mediaDiv);
-        container.appendChild(memDiv);
-
-        setTimeout(() => flipPage(), 50);
-      }
-    }
-
-    function flipPage() {
-      const pages = document.querySelectorAll('.book-page');
-      if (pages.length > 1) {
-        pages[0].classList.add('flip');
-        pages[1].classList.add('flip-back');
-      }
-    }
-
-    function nextPage() {
-      if (currentSection === 'letters' && currentPage < letters.length - 1) {
-        currentPage++;
-        renderPage();
-      } else if (currentSection === 'memories' && currentPage < memories.length - 1) {
-        currentPage++;
-        renderPage();
-      }
-    }
-
-    function prevPage() {
-      if (currentPage > 0) {
-        currentPage--;
-        renderPage();
-      }
-    }
-  </script>
+  <script src="main.js"></script>
 </body>
 </html>
