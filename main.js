@@ -66,6 +66,125 @@ const letters = [
         caption: 'My handsome baby'
       },
       {
+        type: 'image',
+        src: '../img/image13.jpeg',
+        caption: 'grrr so angryyy!'
+      },
+      {
+        type: 'image',
+        src: '../img/image14.jpeg',
+        caption: 'Two constellations that refused to stay in the sky, now taking selfies instead'
+      },
+      {
+        type: 'image',
+        src: '../img/image15.jpeg',
+        caption: 'I always loved having you as close as possible <3'
+      },
+      {
+        type: 'image',
+        src: '../img/image16.jpeg',
+        caption: 'You look so tired of me xD '
+      },
+      {
+        type: 'image',
+        src: '../img/image17.jpeg',
+        caption: 'Always love seeing you smile, even if it is goofy af'
+      },
+      {
+        type: 'image',
+        src: '../img/image18.jpeg',
+        caption: 'Your nose grew when you said you loved me more than I did you '
+      },
+      {
+        type: 'image',
+        src: '../img/image19.jpeg',
+        caption: 'Being in that boat with you was the most relaxing, chaotic and funniest time.'
+      },
+      {
+        type: 'image',
+        src: '../img/image20.jpeg',
+        caption: 'Being in that boat with you was the most relaxing, chaotic and funniest time.'
+      },
+      {
+        type: 'image',
+        src: '../img/image21.jpeg',
+        caption: 'Being in that boat with you was the most relaxing, chaotic and funniest time.'
+      },
+      {
+        type: 'image',
+        src: '../img/image22.jpeg',
+        caption: 'Being in that boat with you was the most relaxing, chaotic and funniest time.'
+      },
+      {
+        type: 'image',
+        src: '../img/image23.jpeg',
+        caption: 'Being in that boat with you was the most relaxing, chaotic and funniest time.'
+      },{
+        type: 'image',
+        src: '../img/image24.jpeg',
+        caption: 'Being in that boat with you was the most relaxing, chaotic and funniest time.'
+      },
+      {
+        type: 'image',
+        src: '../img/image25.jpeg',
+        caption: 'Being in that boat with you was the most relaxing, chaotic and funniest time.'
+      },
+      {
+        type: 'image',
+        src: '../img/image26.jpeg',
+        caption: 'Being in that boat with you was the most relaxing, chaotic and funniest time.'
+      },
+      {
+        type: 'image',
+        src: '../img/image27.jpeg',
+        caption: 'Being in that boat with you was the most relaxing, chaotic and funniest time.'
+      },
+      {
+        type: 'image',
+        src: '../img/image28.jpeg',
+        caption: 'Being in that boat with you was the most relaxing, chaotic and funniest time.'
+      },
+      {
+        type: 'image',
+        src: '../img/image29.jpeg',
+        caption: 'Being in that boat with you was the most relaxing, chaotic and funniest time.'
+      },
+      {
+        type: 'image',
+        src: '../img/image30.jpeg',
+        caption: 'Being in that boat with you was the most relaxing, chaotic and funniest time.'
+      },
+      {
+        type: 'image',
+        src: '../img/image31.jpeg',
+        caption: 'Being in that boat with you was the most relaxing, chaotic and funniest time.'
+      },
+      {
+        type: 'image',
+        src: '../img/image32.jpeg',
+        caption: 'Being in that boat with you was the most relaxing, chaotic and funniest time.'
+      },
+      {
+        type: 'image',
+        src: '../img/image33.jpeg',
+        caption: 'Being in that boat with you was the most relaxing, chaotic and funniest time.'
+      },
+      {
+        type: 'image',
+        src: '../img/image34.jpeg',
+        caption: 'Being in that boat with you was the most relaxing, chaotic and funniest time.'
+      },
+      {
+        type: 'image',
+        src: '../img/image35.jpeg',
+        caption: 'Being in that boat with you was the most relaxing, chaotic and funniest time.'
+      },
+      {
+        type: 'image',
+        src: '../img/image36.jpeg',
+        caption: 'Being in that boat with you was the most relaxing, chaotic and funniest time.'
+      },
+      {
         type: 'video',
         src: 'https://www.w3schools.com/html/mov_bbb.mp4',
         caption: 'Our silly dance in the kitchen 🕺'
