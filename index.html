@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Our Love Book</title>
   <link rel="stylesheet" href="style.css">
-
 </head>
 <body>
   <div class="start-screen" id="start-screen">
     <h1>Welcome to Our Love Book 💖</h1>
     <button onclick="openSection('letters')">See Letters</button>
     <button onclick="openSection('memories')">See Memories</button>
+    <a href="games.html"><button onclick="openSection('games')">Bored??</button></a>
   </div>
 
   <div class="book" id="book">
@@ -19,6 +19,17 @@
     <div class="book-pages" id="book-pages"></div>
     <button class="nav-button" onclick="prevPage()">&#8592;</button>
     <button class="nav-button" onclick="nextPage()">&#8594;</button>
+  </div>
+
+  <div class="container">
+    <audio id="audio" autoplay loop>
+      <source src="i-wanna-be-yours.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+    <div class="audio-controls">
+      <label for="volumeControl">Wanna Lower the Volume? Top right corner love</label>
+      <input type="range" id="volumeControl" min="0" max="1" step="0.01" value="1">
+    </div>
   </div>
 
   <script src="main.js"></script>
