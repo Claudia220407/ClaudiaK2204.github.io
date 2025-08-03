@@ -247,6 +247,9 @@ const memories = [
 
 let currentSection = "";
 let currentPage = 0;
+const chat = document.querySelector(".chat");
+
+chat.disable
 
 function openSection(section) {
   currentSection = section;
@@ -261,12 +264,6 @@ function goBack() {
   document.getElementById("start-screen").style.display = "block";
 }
 
-const audio = document.getElementById("audio");
-const volumeControl = document.getElementById("volumeControl");
-
-volumeControl.addEventListener("input", () => {
-  audio.volume = volumeControl.value;
-});
 
 function renderPage() {
   const container = document.getElementById("book-pages");
