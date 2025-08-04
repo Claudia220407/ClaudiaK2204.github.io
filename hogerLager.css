@@ -2,7 +2,7 @@
 * body {
     background-image:url(/img/afbeelding_begin.jpg);
     background-repeat: no-repeat;
-    background-size: 1950px;
+    background-size:cover;
     image-rendering: crisp-edges;
 }
 /* h1 veranderen */

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkers</title>
+    <link rel="stylesheet" href="checkers.css">
+</head>
+<body>
+    <header>
+        <div class="background"></div>
+        <div class="geometric-shapes">
+    </div>
+<div class="decorative-text">CHECKERS</div>
+    <label for="namePlayerOne">Player 1</label>
+    <input type ="text" id="namePlayerOne" name="namePlayerOne"/>
+    <label for="namePlayerTwo">Player 2</label>
+    <input type="text" id="namePlayerTwo" name="namePlayerTwo"/>
+    <input type="button" id="start" value="Start"/>
+
+    <button class="rules-button">Rules</button>
+    <div class="rules-panel">
+        <p>Welcome to Checkers!</p>
+        <p>Rules:</p>
+        <ul>
+            <li>Player 1 starts the game</li>
+            <br>
+            <li>You can only move the piece when the tiles are highlighted green, if none are highlighted it means there is no valid move possible</li>
+            <br>
+            <li>Everytime you grab an opponents piece, you get a point</li>
+            <br>
+            <li>If you reach the other end of the board, it means you have become king and that piece will also become yellow.</li>
+            <br>
+            <li>the game ends when you or your opponents have no pieces left.</li>
+            <br>
+            <li>Have fun!!</li>
+        </ul>
+    </div>
+
+    <h3 class="turn"></h3>
+    <main>
+        <div class="left-side"></div>
+        <div class="board"></div>
+        <div class="right-side"></div>
+    </main>
+
+    <footer></footer>
+
+    <script src="checkers.js"></script>
+</body>
+</html>
